@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: payflow-backend
+    env: python
+    buildCommand: "./backend/build.sh"
+    startCommand: "gunicorn payflow.wsgi:application --chdir backend"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost,127.0.0.1"
