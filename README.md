@@ -79,18 +79,24 @@ Instead of raw HTML 500 error pages or uninformative generic strings, all API er
 
 ## 🌐 Deployment Instructions (Render & Vercel)
 
-### 1. Backend Deployment on Render
-1. Push this repository to GitHub.
-2. Go to [Render Dashboard](https://dashboard.render.com/) and click **New +** -> **Blueprint**.
-3. Connect your repository. Render will automatically detect `render.yaml`.
-4. Alternatively, create a **Web Service**:
-   - **Build Command**: `./backend/build.sh`
-   - **Start Command**: `gunicorn payflow.wsgi:application --chdir backend`
-   - **Environment Variables**:
-     - `PYTHON_VERSION`: `3.11.0`
-     - `SECRET_KEY`: *(Generate a secure key)*
-     - `DEBUG`: `False`
-     - `ALLOWED_HOSTS`: `.onrender.com,localhost,127.0.0.1`
+### 1. Backend Deployment on Render (100% Free Tier)
+1. Go to [Render Dashboard](https://dashboard.render.com/) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository (`https://github.com/yanayem/task-3.git`).
+3. Configure the Web Service settings:
+   - **Name**: `payflow-backend`
+   - **Region**: Any preferred region (e.g., Oregon or Singapore)
+   - **Branch**: `main`
+   - **Root Directory**: `backend`
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate`
+   - **Start Command**: `gunicorn payflow.wsgi:application`
+   - **Instance Type**: **Free** ($0 / month)
+4. Add **Environment Variables** under "Advanced":
+   - `PYTHON_VERSION`: `3.11.0`
+   - `DEBUG`: `False`
+   - `ALLOWED_HOSTS`: `.onrender.com,localhost,127.0.0.1`
+   - `SECRET_KEY`: `your-secure-production-secret-key`
+5. Click **Create Web Service**. Your backend API will be live at `https://payflow-backend.onrender.com/api`.
 
 ### 2. Frontend Deployment on Vercel
 1. Go to [Vercel Dashboard](https://vercel.com/) and click **Add New** -> **Project**.
