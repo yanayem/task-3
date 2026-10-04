@@ -42,7 +42,7 @@
 
 ---
 
-## ⚡ Caching: What, Where, and For How Long
+##  Caching: What, Where, and For How Long
 
 * **What is cached**: Financial summary analytics (`GET /api/expenses/summary/`), including total count of expenses, total dollar amount spent, and category breakdown.
 * **Where it is cached**: Server-side in Django's caching layer using user-scoped key `summary_user_{user.id}`.
@@ -53,7 +53,7 @@
 
 ---
 
-## ⚠️ Actionable Error Responses
+##  Actionable Error Responses
 
 Instead of raw HTML 500 error pages or uninformative generic strings, all API errors return structured JSON that callers can parse and react to:
 
