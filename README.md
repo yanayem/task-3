@@ -170,7 +170,7 @@ python manage.py test api
 
 ---
 
-## 🔒 Security & Environment Variables
+##  Security & Environment Variables
 
 Create a `.env` file in `backend/` based on `.env.example`:
 
