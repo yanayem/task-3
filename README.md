@@ -22,7 +22,7 @@
 
 ---
 
-## 🔑 Authentication & Data Isolation
+## Authentication & Data Isolation
 
 * **Unauthenticated Requests**: Any request to `/api/expenses/` or `/api/expenses/summary/` without a valid `Authorization: Token <token>` header returns `401 Unauthorized` with error code `AUTHENTICATION_REQUIRED`.
 * **Data Isolation**: Each user can only read, update, or delete their own expense records. Querysets are dynamically scoped to `request.user` (`Expense.objects.filter(user=self.request.user)`).
